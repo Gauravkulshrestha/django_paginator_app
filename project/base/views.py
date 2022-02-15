@@ -8,5 +8,7 @@ def index(request):
     paginator = Paginator(alltodo,3,1) #Set per items page 
     page = request.GET.get('page') #request every page 
     todos = paginator.get_page(page) #get page
-    context = {'todos':todos, 'alltodo':alltodo}
+    nums = "p" * todos.paginator.num_pages #Numbering
+
+    context = {'todos':todos, 'alltodo':alltodo,'nums':nums}
     return render(request, 'index.html', context)
